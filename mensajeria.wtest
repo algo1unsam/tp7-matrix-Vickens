@@ -2,7 +2,46 @@ import mensajeria.*
 import mensajeros.*
 
 
-describe "2 " {}
+describe "2 " {
+
+    test "Contratar mensajero"{
+        mensajeria.contratar(morfeo)
+        assert.that(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "Despedir mensajero"{
+        mensajeria.contratar(morfeo)
+        mensajeria.despedir(morfeo)
+        assert.notThat(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "Despedir todos los mensajers"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        mensajeria.despedirTodos()
+        assert.notThat(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "La lista es grande"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        mensajeria.contratar(neo)
+        assert.that(mensajeria.esGrande())
+    }
+
+    test "El primer empleado puede entregar aquete"{
+        mensajeria.contratar(morfeo)
+        paquete.pagar()
+        assert.that(mensajeria.puedePrimerEmpleado())
+    } // no entiendo por que morfeo no entiende peso si lo tiene definido
+
+    test "Peso del ultimo mensajero"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        assert.equals(900, mensajeria.pesoUltimoMensajero())
+	}
+}
+
 
 
 describe "3 " {}

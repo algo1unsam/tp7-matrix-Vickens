@@ -14,6 +14,15 @@ object morfeo {
 
 }
 
+object trinity {
+    var property peso = 900
+    
+}
+
+object neo {
+
+}
+
 object camion {
     var property peso = 0
     
