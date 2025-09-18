@@ -2,7 +2,85 @@ import mensajeria.*
 import mensajeros.*
 
 
-describe "2 " {}
+describe "2 " {
+
+    test "Contratar mensajero"{
+        mensajeria.contratar(morfeo)
+        assert.that(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "Despedir mensajero"{
+        mensajeria.contratar(morfeo)
+        mensajeria.despedir(morfeo)
+        assert.notThat(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "Despedir todos los mensajers"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        mensajeria.despedirTodos()
+        assert.notThat(mensajeria.mensajerosConjunto().contains(morfeo))
+    }
+
+    test "La lista es grande"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        mensajeria.contratar(neo)
+        assert.that(mensajeria.esGrande())
+    }
+
+    test "El primer empleado puede entregar aquete"{
+        mensajeria.contratar(morfeo)
+        paquete.pagar()
+        assert.that(mensajeria.puedePrimerEmpleado())
+    } // no entiendo por que morfeo no entiende peso si lo tiene definido
+
+    test "Peso del ultimo mensajero"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        assert.equals(900, mensajeria.pesoUltimoMensajero())
+	}//tampoco entiendo bien por qué falla
+}
 
 
-describe "3 " {}
+
+describe "3 " {
+
+    test "Puede ser entregado el paquete"{
+        mensajeria.contratar(morfeo)
+        paquete.pagar()
+        assert.that(paquete.puedeSerEntregadoPor(morfeo))
+    }
+
+    test "Los mensajeros de pueden llevar un pqt son"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        paquete.pagar()
+        assert.equals(2, mensajeria.mensajerosConjunto().size())
+    }
+
+    test "Mensajeria con re sobrepeso"{
+        camion.acoplados(2)  
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        assert.that(mensajeria.sobrepeso())
+
+    }
+
+    test "Paquete enviado con exito"{
+    mensajeria.contratar(morfeo)       
+    paquete.pagar()                    
+
+    mensajeria.enviar(morfeo, paquete)
+    assert.that(mensajeria.enviados.contains(paquete))
+    assert.notThat(mensajeria.pendientes.contains(paquete))
+    } //no entiendo por q me da que no puede hacer referencia a mensajeria.enviados
+
+    test "Conocer la facturacion"{
+    mensajeria.contratar(morfeo)       
+    paquete.pagar()                    
+    paquete.precio(500)
+    mensajeria.enviar(morfeo, paquete)
+    assert.equals(500, mensajeria.facturacionTotal())
+    }//tmb me falla 
+}
