@@ -49,6 +49,7 @@ object puente {
     
 }
 
+
 object paquete {
     var property pago = false
     var destino = puente
@@ -68,4 +69,19 @@ object paquete {
     method puedeSerEntregadoPor(persona){
         return self.estaPago() && destino.dejarPasar(persona)
     }
+}
+
+object paquetito {
+    
+    method estaPago() {
+        return true
+    }
+
+    method puedeSerEntregadoPor(mensajero) {
+        return true
+    }
+}
+
+object paqueton {
+    var property precio = 100
 }

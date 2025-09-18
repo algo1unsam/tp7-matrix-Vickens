@@ -3,6 +3,8 @@ import mensajeros.*
 object mensajeria {
     var  property mensajeros = []
     var primerEmpleado = mensajeros[0]
+    var property pendientes = []
+    var property enviados = []
 
     method contratar(mensajero){
         mensajeros.add(mensajero)
@@ -36,4 +38,18 @@ object mensajeria {
     }
 }
 
+    method sobrepeso(){
+        var suma = 0
+        mensajeros.forEach{mensajeros => suma += mensajeros.peso()}
+        return (suma/ mensajeros.size()) > 500
+    }
+
+    method enviar(persona, paquete){
+        if (paquete.puedeSerEntregadoPor(persona)){
+            enviados.add(paquete)
+        }else {
+            pendientes.add(paquete)
+        }
+    }
+    
 }

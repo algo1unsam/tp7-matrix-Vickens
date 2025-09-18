@@ -39,9 +39,41 @@ describe "2 " {
         mensajeria.contratar(morfeo)
         mensajeria.contratar(trinity)
         assert.equals(900, mensajeria.pesoUltimoMensajero())
-	}
+	}//tampoco entiendo bien por qué falla
 }
 
 
 
-describe "3 " {}
+describe "3 " {
+
+    test "Puede ser entregado el paquete"{
+        mensajeria.contratar(morfeo)
+        paquete.pagar()
+        assert.that(paquete.puedeSerEntregadoPor(morfeo))
+    }
+
+    test "Los mensajeros de pueden llevar un pqt son"{
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        paquete.pagar()
+        assert.equals(2, mensajeria.mensajerosConjunto().size())
+    }
+
+    test "Mensajeria con re sobrepeso"{
+        camion.acoplados(2)  
+        mensajeria.contratar(morfeo)
+        mensajeria.contratar(trinity)
+        assert.that(mensajeria.sobrepeso())
+
+    }
+
+    test "Paquete enviado con exito"{
+    mensajeria.contratar(morfeo)       
+    paquete.pagar()                    
+
+    mensajeria.enviar(morfeo, paquete)
+    assert.that(mensajeria.enviados.contains(paquete))
+    assert.notThat(mensajeria.pendientes.contains(paquete))
+    }
+
+}
