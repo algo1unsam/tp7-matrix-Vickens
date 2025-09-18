@@ -2,7 +2,7 @@ import mensajeros.*
 
 object mensajeria {
     var  property mensajeros = []
-    var primerEmpleado = mensajeros[0]
+    var primerEmpleado = mensajeros[0] // me tira error??
     var property pendientes = []
     var property enviados = []
 
@@ -50,6 +50,10 @@ object mensajeria {
         }else {
             pendientes.add(paquete)
         }
+    }
+
+    method facturacionTotal(){
+        return enviados.map{paquete => paquete.precio()}.sum()
     }
     
 }

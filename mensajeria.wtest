@@ -74,6 +74,13 @@ describe "3 " {
     mensajeria.enviar(morfeo, paquete)
     assert.that(mensajeria.enviados.contains(paquete))
     assert.notThat(mensajeria.pendientes.contains(paquete))
-    }
+    } //no entiendo por q me da que no puede hacer referencia a mensajeria.enviados
 
+    test "Conocer la facturacion"{
+    mensajeria.contratar(morfeo)       
+    paquete.pagar()                    
+    paquete.precio(500)
+    mensajeria.enviar(morfeo, paquete)
+    assert.equals(500, mensajeria.facturacionTotal())
+    }//tmb me falla 
 }
